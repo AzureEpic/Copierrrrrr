@@ -1,176 +1,103 @@
-local Decimals = 4
-local Clock = os.clock()
-local ValueText = "Value Is Now :"
+--Credit to xz#1111 for source
+local Ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/drillygzzly/Roblox-UI-Libs/main/Abyss%20Lib/Abyss%20Lib%20Source.lua"))()
+local Ui = Library
 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/drillygzzly/Roblox-UI-Libs/main/1%20Tokyo%20Lib%20(FIXED)/Tokyo%20Lib%20Source.lua"))({
-    cheatname = "Title Here", -- watermark text
-    gamename = "Title Here", -- watermark text
+local LoadTime = tick()
+
+local Loader = Library.CreateLoader(
+    "Title Here", 
+    Vector2.new(300, 300)
+)
+
+local Window = Library.Window(
+    "Text Here", 
+    Vector2.new(500, 620)
+)
+
+Window.SendNotification(
+    "Normal", -- Normal, Warning, Error 
+    "Press RightShift to open menu and close menu!", 
+    10
+)
+
+Window.Watermark(
+    "Text Here"
+)
+-- Window:Visible = true
+
+-- // UI Main \\ --
+local Tab1 = Window:Tab("Tab1")
+local Section1 = Tab1:Section(
+    "Section1", 
+    "Left"
+)
+
+
+Section1:Toggle({
+    Title = "Toggle1", 
+    Flag = "Toggle_1",
+    Type = "Dangerous",
+    Callback = function(v)
+        print("Value = "..v)
+    end
+}): -- Toggle Keybind Below
+    Keybind({
+    Title = "KeybindToggle1",
+    Flag = "Keybind_Toggle_1", 
+    Key = Enum.UserInputType.MouseButton2, 
+    StateType = "Toggle"
 })
 
-library:init()
+Section1:Toggle({
+    Title = "Toggle2", 
+    Flag = "Toggle_2"
+    
+}):
+Colorpicker({
+    Color = Library.Theme.Accent[2], 
+    Flag = "Toggle2Color"
+})
 
-local Window1  = library.NewWindow({
-    title = "Title Here | Title Here", -- Mainwindow Text
-    size = UDim2.new(0, 510, 0.6, 6
-)})
 
-local Tab1 = Window1:AddTab("  Tab1  ")
-local SettingsTab = library:CreateSettingsTab(Window1)
-
---Tab1:SetText("Text")
-
-local Section1 = Tab1:AddSection("Section 1", 1)
---Section1:SetText("Text")
-
-Section1:AddToggle({
-    text = "Toggle1",
-    state = false,
-    risky = true,
-    tooltip = "tooltip1",
-    flag = "Toggle_1",
-    risky = false,
-    callback = function(v)
-        print(ValueText, v)
+Section1:Slider({
+    Title = "Slider1", 
+    Flag = "Slider_1", 
+    Symbol = "", 
+    Default = 0, 
+    Min = 0, 
+    Max = 20, 
+    Decimals = 1,
+    Callback = function(v)
+        print("Value = "..v)
     end
-}):AddBind({
-    enabled = true,
-    text = "Keybind1",
-    tooltip = "tooltip1",
-    mode = "toggle",
-    bind = "None",
-    flag = "ToggleKey_1",
-    state = false,
-    nomouse = false,
-    risky = false,
-    noindicator = false,
-    callback = function(v)
-        print(ValueText, v)
-    end,
-    keycallback = function(v)
-        print(ValueText, v)
+})
+Section1:Dropdown({
+    Title = "Dropdown1", 
+    List = {"1", "2" ,"3"}, 
+    Default = "1", 
+    Flag = "DropDown_1",
+    Callback = function(v)
+        print("Value = "..v)
     end
 })
 
-Section1:AddBox({
-    enabled = true,
-    name = "TextBox1",
-    flag = "TextBox_1",
-    input = "PlaceHolder1",
-    focused = false,
-    risky = false,
-    callback = function(v)
-        print(ValueText, v)
-    end
-})
-
---[[Section1:AddToggle({
-    text = "Toggle1",
-    flag = "Toggle_1",
-    callback = function(v)
-        print(ValueText, v)
-    end
-}):AddColor({
-    text = "Color1",
-    color = Color3.fromRGB(255, 255, 255),
-    flag = "Color_1",
-    callback = function(v)
-        print(ValueText, v)
-    end
-})--]]
-
---[[Section1:AddBind({
-    enabled = true,
-    text = "Keybind1",
-    tooltip = "tooltip1",
-    mode = "toggle",
-    bind = "None",
-    flag = "ToggleKey_1",
-    state = false,
-    nomouse = false,
-    risky = false,
-    noindicator = false,
-    callback = function(v)
-        print(ValueText, v)
-    end,
-    keycallback = function(v)
-        print(ValueText, v)
-    end
-})--]]
-
-Section1:AddSeparator({
-    enabled = true,
-    text = "Separator1"
-})
-
-Section1:AddButton({
-    enabled = true,
-    text = "Button1",
-    tooltip = "tooltip1",
-    confirm = true,
-    risky = false,
-    callback = function()
+Section1:Button({
+    Title = "Button1",
+    Callback = function()
         print("Pressed!")
     end
 })
 
--- Button1:SetText("Text")
+--Section1:Colorpicker({
+    --Title = "ColorPicker1"
+--})
 
-Section1:AddSlider({
-    enabled = true,
-    text = "Slider1",
-    tooltip = "tooltip1",
-    flag = "Slider_1",
-    suffix = "",
-    dragging = true,
-    focused = false,
-    min = 0,
-    max = 100,
-    increment = 0.1,
-    risky = false,
-    callback = function(v)
-        print(ValueText, v)
-    end
-})
+--Section1:Label({
+    --Title = "Label1"
+--})
 
---Slider_1:SetValue(100)
-
-Section1:AddList({
-    enabled = true,
-    text = "Selection", 
-    tooltip = "tooltip1",
-    selected = "",
-    multi = false,
-    open = false,
-    max = 4,
-    values = {"1", "2", "3"},
-    risky = false,
-    callback = function(v)
-        print(ValueText, v)
-    end
-})
-
-Section1:AddColor({
-    enabled = true,
-    text = "Color1",
-    tooltip = "tooltip1",
-    color = Color3.fromRGB(255, 255, 255),
-    flag = "Color_1",
-    trans = 0,
-    open = false,
-    risky = false,
-    callback = function(v)
-        print(ValueText, v)
-    end
-})
-
-local Time = (string.format("%."..tostring(Decimals).."f", os.clock() - Clock))
-library:SendNotification(("Loaded In "..tostring(Time)), 6)
-
---[[
-    --Window1:SetOpen(false)
-    makefolder("Title Here")
-    library:SetTheme(Default)
-    library:GetConfig(Default)
-    library:LoadConfig(Default)
-    library:SaveConfig(Default)
-]]
+--Tab1:AddPlayerlist()
+Window:AddSettingsTab()
+Window:SwitchTab(Tab1)
+Window.ToggleAnime(false)
+LoadTime = math.floor((tick() - LoadTime) * 1000)
