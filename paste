@@ -128,7 +128,7 @@ local spage=mpage['showpage']
 
 local shadertog=addfr['toggleshaderframe']
 local togd=shadertog['handle']
-local home=spage['home']
+local home=spage['Main']
 local changelog=home['ScrollingFrame']['changelog']
 
 local xddcc="70736861646520756C74696D617465"
