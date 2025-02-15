@@ -1,103 +1,163 @@
---Credit to xz#1111 for source
-local Ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/drillygzzly/Roblox-UI-Libs/main/Abyss%20Lib/Abyss%20Lib%20Source.lua"))()
-local Ui = Library
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design/Libraries/main/Shaman/Library.lua'))()
+local Flags = Library.Flags
 
-local LoadTime = tick()
+local Window = Library:Window({
+    Text = "Baseplate"
+})
 
-local Loader = Library.CreateLoader(
-    "Title Here", 
-    Vector2.new(300, 300)
-)
+local Tab = Window:Tab({
+    Text = "Aiming"
+})
 
-local Window = Library.Window(
-    "Text Here", 
-    Vector2.new(500, 620)
-)
+local Tab2 = Window:Tab({
+    Text = "Visual"
+})
 
-Window.SendNotification(
-    "Normal", -- Normal, Warning, Error 
-    "Press RightShift to open menu and close menu!", 
-    10
-)
+local ChamsSection = Tab2:Section({
+    Text = "Chams"
+})
 
-Window.Watermark(
-    "Text Here"
-)
--- Window:Visible = true
+local Section = Tab:Section({
+    Text = "Aimbot"
+})
 
--- // UI Main \\ --
-local Tab1 = Window:Tab("Tab1")
-local Section1 = Tab1:Section(
-    "Section1", 
-    "Left"
-)
+local Section2 = Tab:Section({
+    Text = "FOV"
+})
 
+local Section3 = Tab:Section({
+    Text = "Misc",
+    Side = "Right"
+})
 
-Section1:Toggle({
-    Title = "Toggle1", 
-    Flag = "Toggle_1",
-    Type = "Dangerous",
+ChamsSection:Toggle({
+    Text = "Enabled"
+})
+
+ChamsSection:Toggle({
+    Text = "Color"
+})
+
+ChamsSection:Toggle({
+    Text = "Filled"
+})
+
+ChamsSection:Toggle({
+    Text = "Team Check"
+})
+
+Section:Toggle({
+    Text = "Enabled"
+})
+
+Section:Toggle({
+    Text = "Wall Check"
+})
+
+Section:Toggle({
+    Text = "Smooth Aimbot"
+})
+
+Section2:Toggle({
+    Text = "Enabled"
+})
+
+Section2:Toggle({
+    Text = "Filled FOV"
+})
+
+Section2:Toggle({
+    Text = "FOV Transparency",
+    Tooltip = "Changes your fov transparency."
+})
+
+Section2:Button({
+    Text = "Reset FOV",
+    Tooltip = "This resets your aimbot fov."
+})
+
+Section3:Toggle({
+    Text = "Infinite Ammo"
+})
+
+Section3:Toggle({
+    Text = "No Spread"
+})
+
+Section3:Toggle({
+    Text = "No Bullet Drop",
+    Default = true
+})
+
+Section3:Toggle({
+    Text = "Full Auto"
+})
+
+local a = Section3:Toggle({
+    Text = "No Recoil"
+})
+
+local label = Section3:Label({
+    Text = "This is a label.",
+    Color = Color3.fromRGB(217, 97, 99),
+    Tooltip = "This is a label."
+})
+
+local dropdown = Section:Dropdown({
+    Text = "Dropdown",
+    List = {"Head","Torso","Random"},
+    Flag = "Choosen",
     Callback = function(v)
-        print("Value = "..v)
+        warn(v)
     end
-}): -- Toggle Keybind Below
-    Keybind({
-    Title = "KeybindToggle1",
-    Flag = "Keybind_Toggle_1", 
-    Key = Enum.UserInputType.MouseButton2, 
-    StateType = "Toggle"
 })
 
-Section1:Toggle({
-    Title = "Toggle2", 
-    Flag = "Toggle_2"
-    
-}):
-Colorpicker({
-    Color = Library.Theme.Accent[2], 
-    Flag = "Toggle2Color"
-})
-
-
-Section1:Slider({
-    Title = "Slider1", 
-    Flag = "Slider_1", 
-    Symbol = "", 
-    Default = 0, 
-    Min = 0, 
-    Max = 20, 
-    Decimals = 1,
+Section:RadioButton({
+    Text = "RadioButton",
+    Options = {"Legit","Blatant"},
     Callback = function(v)
-        print("Value = "..v)
-    end
-})
-Section1:Dropdown({
-    Title = "Dropdown1", 
-    List = {"1", "2" ,"3"}, 
-    Default = "1", 
-    Flag = "DropDown_1",
-    Callback = function(v)
-        print("Value = "..v)
+        warn(v)
     end
 })
 
-Section1:Button({
-    Title = "Button1",
+Section:Toggle({
+    Text = "Silent Aimbot"
+})
+
+Section:Input({
+    Placeholder = "Webhook URL",
+    Flag = "URL"
+})
+
+Section:Keybind({
+    Default = Enum.KeyCode.E,
+    Text = "Aimbot Key",
     Callback = function()
-        print("Pressed!")
+        warn("Pressed")
     end
 })
 
---Section1:Colorpicker({
-    --Title = "ColorPicker1"
---})
+Section:Slider({
+    Text = "Slider Test",
+    Default = 5,
+    Minimum = 0,
+    Maximum = 50,
+    Flag = "SliderFlag",
+    Callback = function(v)
+        warn(v)
+    end
+})
 
---Section1:Label({
-    --Title = "Label1"
---})
+Tab:Select()
 
---Tab1:AddPlayerlist()
-Window:AddSettingsTab()
-Window:SwitchTab(Tab1)
-Window.ToggleAnime(false)
-LoadTime = math.floor((tick() - LoadTime) * 1000)
+wait(5)
+
+--[[dropdown:Refresh({
+    List = {"Head", "Feet"}
+})--]]
+
+label:Set({
+    Text = "This is a red label."
+})
+
+a:Set(true)
