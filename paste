@@ -86,12 +86,12 @@ local fdist,fsize,ftrans={1.7,0.3,-0.3,-0.9},{0.7,0.2,1.2,0.45},{0.8,0.7,0.9,0.6
 local fls,sre,sflare,rmod={},ins('ScreenGui',pg),ins('ImageLabel'),1
 local bmut,ber,lor=11,5,cam['CFrame']['LookVector']
 local colorcor,atmosphere,bloom,blur,depth,sky,sray,cloud
-local randomstring='https://raw.githubusercontent.com/randomstring0/pshade-ultimate/refs/heads/main/'
+local randomstring='https://raw.githubusercontent.com/AzureEpic/-hi-/tree/main/'
 local technology=ghp(lg,'Technology') or 'ShadowMap'
 local lan=httpget(randomstring..'lan/every.json')
 local randomsky=randomstring..'sky/'
 if rs:IsStudio() then return end
-local src=randomstring..'src/'
+local src=randomstring..'libs'
 local flare,motionblur
 local wshade=true
 local thick = tick()
